@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Brains</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap">
+</head>
+
+<body>
+    <section class="Sub-header">
+        <nav>
+            <a href="index.html" class="logo">Binary
+                <i class="fab fa-staylinked"></i> Brains
+            </a>
+            <div class="nav-links" id="navLinks">
+                <!-- reposnive bar open and close -->
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="course.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+            <!-- reposnive bar open and close -->
+        </nav>
+        <h1>Our Services</h1>
+    </section>
+
+
+    <!-- best course start -->
+
+    <section class="facilities">
+        <h1>Waste Tracking System</h1>
+        <h3>Submit us photos and loacation of waste around you, our vehicle will come and clean the location.</h3>
+
+        <div class="form-tracker">
+
+            <div>
+                <div class="file-input-wrapper">
+                    <label for="fileInput" class="btn-choose-file">Choose a file</label>
+                    <input type="file" id="fileInput" accept="image/*" style="display:none"
+                    onchange="displayFileName()">
+                </div>
+                <h4>REPORT YOUR NEAR-BY WASTE</h4>
+
+                <p id="selectedFileName" class="file-name"></p>
+                <div><input type="checkbox"> Confirmation</div>
+                <button class="form_btn" onclick="sendData()">Submit</button>
+                <div>
+                    <p>for feedback</p>
+                    <a href="/contact.html">contact us</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- best courses end -->
+
+    <!-- Footer start -->
+    <section class="footer">
+        <hr>
+        <h4>About Us</h4>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse minima incidunt odio nam facilis, eligendi
+            <br> Itaque fugiat cupiditate consectetur. Aliquid ab deserunt exercitationem, illum molestiae dolorem.
+        </p>
+
+        <div class="icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin"></i>
+        </div>
+        <p>Made with <i class="fas fa-heart"></i> by <a href="#">Binary Brains</a></p>
+        <p>Copyright © 2024 <a href="index.html">Green Collectors</a>. All Rights Reserved</p>
+    </section>
+    <!-- Footer end -->
+
+    <script src="app.js"></script>
+    <script>
+        let fileName;
+        let coords = {
+
+        }
+        
+        function displayFileName() {
+            var fileInput = document.getElementById('fileInput');
+            var fileNameDisplay = document.getElementById('selectedFileName');
+
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = 'Selected File: ' + fileInput.files[0].name;
+                fileName = fileInput.files[0].name
+            } else {
+                fileNameDisplay.textContent = '';
+            }
+
+            // Check if geolocation is available in the browser
+            if ("geolocation" in navigator) {
+                // get the user's current location
+                navigator.geolocation.getCurrentPosition(async function (position) {
+
+                    const latitude = position.coords.latitude
+                    const longitude = position.coords.longitude
+                    coords = { latitude, longitude }
+                })
+            }
+
+
+        }
+
+        function sendData() {
+            alert(`file: ${fileName}, latitude: ${coords.latitude}, longitude: ${coords.latitude}`)
+        }
+
+    </script>
+</body>
+
+</html>
